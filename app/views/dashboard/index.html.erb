@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% content_for :title, "Dashboard" %>
+</head>
+<body>
+    <div class="header">
+    <ul class="items">
+        <li id="logo"></li>
+        <li class="dropdown">            
+        <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
+        <div class="menu">
+            <ul class="dropdownmenu">
+                <li class="item"><i class="fa fa-pencil"></i><a><%= link_to " Practice", code_langselect_path %></a></li>
+                <li class="item">
+<i class="fa fa-graduation-cap"></i><a><%= link_to " Learn", dashboard_path %></a></li>
+                <li class="item"><i class="fa fa-code"></i><a><%= link_to " Projects", dashboard_path %></a></li>
+                <li class="divider"></li>
+                <li class="item"><i class="fa fa-user"></i><a><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
+                <li class="item"><i class="fa fa-sign-out"></i><a><%= link_to " Log Out", destroy_user_session_path, :method => :delete %></a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </div>
+    <strong class="welcome">Welcome back, <%= current_user.firstname.capitalize %>!</strong>
+    <h1 id="meetxt">You will meet on <i>Wednesdays</i>, during lunch</h1>
+    <h2 id="recotext">Recommended courses for you:</h2>
+
+<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 0px;
+        overflow: hidden;
+        background-image: url('http://i.imgur.com/mQ1nts6.png');
+        background-size:100%;
+        background-repeat: no-repeat;
+	}
+    .welcome{
+        font-family: Font;
+        font-size: 3.5em;
+        padding-top: 20px;
+    }
+    .header {
+        width: 100%;
+        height: 60px;
+        background-color:#2e2e2e;
+    }
+    #recotext, #meetxt {
+        font-family: Font;
+    }
+    #recotext {
+        top: 40%;
+        position: absolute;
+    }
+	.round-image-50 {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    bottom: 10px;
+    img { width: 100% }
+}
+.dropdown{
+    left:80%;
+    position: relative;
+    bottom: 10px;
+}
+    .btn-default {
+        left:80%;
+        position:relative;
+        top:10px;
+    }
+    .header a{
+        text-decoration: none;
+    }
+.dropdownmenu {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    min-width: 160px;
+    float: left;
+    padding: 0 0px;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 10px;
+    text-align: left;
+    background-color: #2e2e2e;
+    display: block;
+}
+.item a, .item i{
+    line-height: 45px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+        color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 20px;
+    text-align: center;
+        color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 20px;
+    padding-left: 10px;
+}
+.item:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3ac569;
+}
+
+
+.divider {
+    background-color: #1F1F1F;
+    height: 1px;
+    margin:9px 0;
+}
+.dropdownmenuhide {
+    position: absolute;
+    top: 100%;
+    z-index: 1000;
+    display: none;
+    min-width: 160px;
+    float: left;
+    padding: 0 0px;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 10px;
+    text-align: left;
+    background-color: #2e2e2e;
+    display: block;
+}
+</style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.round-image-50').clickEvent(function() {
+                $('.dropdownmenu').toggleClass('.dropdownmenuhide');
+            });
+        });
+    </script>
+</body>
+</html>

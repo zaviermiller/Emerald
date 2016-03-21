@@ -1,0 +1,147 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% content_for :title, "Edit User" %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+<%= devise_error_messages! %>
+
+<div class="parent">
+    <%= f.label :email, class: "label" %>
+    <div>
+        <%= f.email_field :email, class: "form" %>
+    </div>
+
+    <div class="-parent">
+    <%= f.label :password, "New Password", class: "label" %><i>(leave blank if you don't want to change it)</i>
+    <div class="password">
+        <%= f.password_field :password, autocomplete: "off", class: "form" %>
+    </div>
+    </div>
+
+
+<div class="-parent">
+    <%= f.label :password_confirmation, class: "label" %>
+    <div>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form" %>
+    </div>
+</div>
+
+<div class="-parent">
+    <%= f.label :current_password, class: 'label' %> <i>(we need your current password to confirm your changes)</i>
+    <div>
+        <%= f.password_field :current_password, autocomplete: "off", class: 'form' %>
+    </div>
+</div>
+
+<div class="-parent">
+    <%= f.label :avatar, class: "label" %>
+    <div>
+        <%= f.file_field :avatar %>
+    </div>
+</div>
+
+        <%= f.submit "Update", class: "signup" %>
+
+
+<%= button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'cancel' %>
+<%= link_to "Back", :back, class: 'btn btn-default btn-s' %>
+
+</div>
+
+<% end %>
+
+<style type="text/css">
+        body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url('http://i.imgur.com/mQ1nts6.png');
+        background-size:100%;
+        background-repeat: repeat-y;
+    }
+    .logo {
+  max-width: 25%;
+  position: absolute;
+  right: 50%;
+  margin-right: -159.625px;
+  top: -12%;
+  margin-top: 38.31px;
+}
+    .form {
+        width: 300px;
+        height: 50px;
+        font-size: 20px;
+        opacity: .6;
+        color: #3ac569;
+    }
+    .form:hover {
+        opacity: 1;
+    }
+    .form:focus {
+        opacity: 1;
+    }
+    .parent {
+       margin-left: -150px;
+        left: 50%;
+        position: absolute;
+        padding-top: 10px;
+    }
+    .signup {
+        width: 300px;
+        height: 50px;
+        background-color: #3ac569;
+        border: none;
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        margin-top: 52.5px;
+        top: 95%;
+    }
+    .signup:hover {
+        background-color: #47B16A;
+    }
+    .label {
+        text-align: center;
+        color: black;
+        font-size: 15px;
+    }
+    .remember {
+        position: absolute;
+        top: 130%;
+        margin-top: 19.5px;
+    }
+    .-parent {
+        padding-top: 10px;
+    }
+    .fp {
+        font-size:13px;
+        color: black;
+        position: absolute;
+        top: 133%;
+        margin-top: 17.29px;
+        left: 40%;
+        margin-left: 42.5124px;
+    }
+    .fp:hover {
+        color: black;
+    }
+        .cancel {
+        width: 300px;
+        height: 50px;
+        background-color: #EC6A5C;
+        border: none;
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        margin-top: 55px;
+        top: 110%;
+    }
+    .cancel:hover {
+        background-color: #C65146;
+    }
+    .btn {
+        position: absolute;
+        margin-top: 62.5px;
+        top: 125%;
+    }
+    h2 {
+        text-align: center;
+    }
+    </style>

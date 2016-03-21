@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Emerald - <%= yield(:title) %></title>
+  <% if notice %>
+<div id="notice_wrapper">
+  <p class="notice"><%= notice %></p>
+  </div>
+  <% elsif alert %>
+  <div id="alert_wrapper">
+<p class="alert"><%= alert %></p>
+</div>
+ <% end -%>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<style type="text/css">
+@font-face {
+  font-family: "Font";
+  src: url(/assets/Font1.otf) format("truetype");
+}
+	#notice_wrapper {
+		width: 100%;
+		position: absolute;
+		z-index: 99;
+		top: 0;
+		background-color: rgba(58,197,105,.85);
+	}
+	.notice {
+		padding: 2.5rem 0;
+		color: white;
+		letter-spacing: 1px;
+		font-size: 1.25rem;
+		text-align: center;
+		font-weight: 700;
+		opacity: 1;
+	}
+		#alert_wrapper {
+		width: 100%;
+		position: absolute;
+		z-index: 99;
+		top: 0;
+		background-color: rgba(241,92,92,.85);
+	}
+	.alert {
+		padding: 2.5rem 0;
+		color: white;
+		letter-spacing: 1px;
+		font-size: 1.25rem;
+		text-align: center;
+		font-weight: 700;
+		opacity: 1;
+	}
+</style>
+
+<%= yield %>
+</body>
+</html>
