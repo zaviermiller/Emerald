@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @help_ticket.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_help_ticket_path(@help_ticket) %> |
+<%= link_to 'Back', help_tickets_path %>

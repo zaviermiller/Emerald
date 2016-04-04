@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,400italic' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Emerald - <%= yield(:title) %></title>
-  <% if notice %>
-<div id="notice_wrapper">
-  <p class="notice"><%= notice %></p>
-  </div>
-  <% elsif alert %>
-  <div id="alert_wrapper">
-<p class="alert"><%= alert %></p>
-</div>
- <% end -%>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -21,6 +14,9 @@
 @font-face {
   font-family: "Font";
   src: url(/assets/Font1.otf) format("truetype");
+}
+body {
+  overflow-x:hidden;
 }
 	#notice_wrapper {
 		width: 100%;
@@ -54,6 +50,56 @@
 		font-weight: 700;
 		opacity: 1;
 	}
+	.btn {
+	border-radius: 0px;
+}
+.btn-default {
+	background-color: rgba(0,0,0,0);
+	border: none;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+        border: none;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-default:hover {
+	background-color: rgba(0,0,0,0);
+}
+.btn-default:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: #3ac569;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.btn-default:hover:before, .btn-default:focus:before, .btn-default:active:before {
+  left: 0;
+  right: 0;
+}
 </style>
 
 <%= yield %>

@@ -6,8 +6,8 @@ class DashboardController < ApplicationController
     end
     
     def new
-        @skills = current_user.skills.build
         if current_user.user?
+        @skills = current_user.skills.build
         else
             redirect_to dashboard_path
         end

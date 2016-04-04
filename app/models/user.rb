@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
     presence: true,
     inclusion: { in: ["mlkclub1"] }
     has_many :skills
+    has_many :snippits
+    has_many :help_tickets
     validates :username, :firstname, :lastname,
     presence: true
     

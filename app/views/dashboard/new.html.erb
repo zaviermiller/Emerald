@@ -4,12 +4,25 @@
 	<% content_for :title, "Dashboard" %>
 </head>
 <body>
-    <div class="navbar navbar-inverse">
-        <ul class="nav">
-        	<%= link_to main_index_path do %>
-       		<%= image_tag("EmeraldLogo.png", :class => "navbar-brand") %>
-       		<% end %>
-            <%= link_to "Log Out", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %>
+  <div class="header">
+    <ul class="items">
+        <li id="logo"><img class="logo" data-alt-src="https://i.imgur.com/9uDwNZU.png" src="https://i.imgur.com/HmqIfcF.png" /></li>
+        <li class="dropdown">            
+        <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
+        <div class="menu">
+            <ul class="dropdownmenu">
+                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Practice", snippits_path %></a></li>
+                <li class="item"><a><i class="fa fa-graduation-cap"></i><%= link_to " Learn", dashboard_path %></a></li>
+                <li class="item"><a><i class="fa fa-code"></i><%= link_to " Projects", dashboard_path %></a></li>
+                <li class="divider"></li>
+                <li class="item"><a><i class="fa fa-user"></i><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
+                <li class="item"><a><i class="fa fa-sign-out"></i><%= link_to " Log Out", destroy_user_session_path, :method => :delete %></a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </li>
+    </ul>
     </div>
         <h1>One more step, <%= current_user.firstname.capitalize %>!</h1>
 <h3>Tell us what you know!</h3>
@@ -21,31 +34,77 @@
 		      margin: 0px;
         padding: 0px;
         overflow: hidden;
-        background-image: url('http://i.imgur.com/mQ1nts6.png');
+        background-image: url('https://i.imgur.com/mQ1nts6.png');
         background-size:100%;
         background-repeat: no-repeat;
 	}
-	.round-image-50 {
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    height: 50px;
-    width: 50px;
-    overflow: hidden;
-    cursor: pointer;
-    img { width: 100% }
-}
-.dropdown{
-    left:80%;
-    position: relative;
-}
-    .btn-default {
-        left:80%;
-        position:relative;
-        top:10px;
+   .items {
+        position: relative;
+        bottom: 7px;
     }
+    .header {
+        width: 100%;
+        height: 60px;
+        background-color:#2e2e2e;
+    }
+    .headerlogo {
+        width: 50px;
+    }
+.signouttext {
+    color: white;
+}
+.signouttext:hover{
+    color: white;
+    text-decoration: none;
+}
+.signout {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  overflow: hidden;
+  color: white;
+  background-color: rgba(0,0,0,0);
+        border: none;
+        width: 75px;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    left:75%;
+    text-decoration: none;
+    cursor: pointer;
+}
+.signout:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: #3ac569;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  text-decoration: none;
+}
+.signout:hover:before, .signout:focus:before, .signout:active:before {
+  left: 0;
+  right: 0;
+  text-decoration: none;
+  color: white;
+}
 </style>
 </body>
 </html>

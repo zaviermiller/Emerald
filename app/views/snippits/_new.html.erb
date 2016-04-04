@@ -1,0 +1,92 @@
+<%= form_for(@snippit) do |f| %>
+  <% if @snippit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@snippit.errors.count, "error") %> prohibited this snippit from being saved:</h2>
+
+      <ul>
+      <% @snippit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+<%=image_tag("EmeraldLogo.png", :class => "logos img-responsive")%>
+<div class="parent">
+    <%= f.label :title, class: "label" %>
+    <div class="username">
+        <%= f.text_field :title, class: "form", :value => "New Snippit" %>
+    </div>
+    <%= f.submit "Save", class: 'save' %>
+    </div>
+<% end %>
+<style type="text/css">
+        body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url('https://i.imgur.com/mQ1nts6.png');
+        background-size:100%;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    .logos {
+      width: 350px;
+      left: 50%;
+      position: relative;
+      margin-left: -175px;
+
+}
+    .form {
+        width: 300px;
+        height: 50px;
+        font-size: 20px;
+        opacity: .6;
+        color: #3ac569
+    }
+    .form:hover {
+        opacity: 1;
+    }
+    .form:focus {
+        opacity: 1;
+    }
+    .parent {
+       margin-left: -150px;
+        left: 50%;
+        position: absolute;
+        top: 60%;
+        margin-top: -30px;
+    }
+    .save {
+        width: 300px;
+        height: 50px;
+        background-color: #3ac569;
+        border: none;
+        font-size: 20px;
+        color: white;
+        position: absolute;
+        margin-top: 40px;
+        top: 80%;
+    }
+    .save:hover {
+        background-color: #47B16A;
+    }
+    .label {
+        text-align: center;
+        color: black;
+        font-size: 25px;
+        font-family: Raleway;
+    }
+    .fp {
+        font-size:13px;
+        color: black;
+        position: absolute;
+        top: 133%;
+        margin-top: 17.29px;
+        left: 40%;
+        margin-left: 42.5124px;
+    }
+    .fp:hover {
+        color: black;
+    }
+</style>
+</body>

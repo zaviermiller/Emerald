@@ -1,0 +1,98 @@
+<head>
+   <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+<link rel="stylesheet" href="http://codemirror.net/theme/monokai.css">
+<script src="http://codemirror.net/lib/codemirror.js"></script>
+<script src="http://codemirror.net/mode/xml/xml.js"></script>
+<script src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+    <script src="http://codemirror.net/addon/edit/continuecomment.js"></script>
+<script src="http://codemirror.net/mode/javascript/javascript.js"></script>
+<script src="http://codemirror.net/mode/css/css.js"></script>
+    <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+</head>
+<body>
+<%= form_for(@snippit) do |f| %>
+        <%= f.submit "Save", class: 'btn btn-primary' %>
+        <%= link_to 'Preview', @snippit, :class => "btn btn-default" %>
+        <ul class="nav nav-tabs">
+        <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
+        <li><a href="#css3", data-toggle=tab>CSS</a></li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane active" id="html5">
+<%= f.text_area(:html, :id => "code")%>
+</div>
+<div class="tab-pane" id="css3">
+<%= f.text_area(:css, :id => "css")%>
+</div>
+</div>
+<% end %>
+<script>
+      var delay;
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent",
+                    lineNumbers: true,
+                    lineWrapping: true, theme: "monokai"});
+      editor.on("change", function() {
+        clearTimeout(delay);
+        delay = setTimeout(updatePreview, 300);
+      });
+
+var delay;
+// Initialize CodeMirror editor with a nice html5 canvas demo.
+var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme:"monokai",
+    mode: 'text/html'
+});
+
+</script>
+<style type="text/css">
+  .CodeMirror {
+      font-family: monospace;
+  color: black;
+  padding: 10px;
+  height: 1000px;
+  display: all;
+}
+body {
+  overflow: hidden;
+      padding: 0px;
+     margin: 0;
+     background: url('https://i.imgur.com/mQ1nts6.png');
+     background-size: 1440px 800px;
+     background-repeat:no-repeat;
+     overflow: hidden;
+    display: compact;
+}
+.tab-pane {
+  border-radius: 0;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+  border-color: #3ac569;
+}
+.nav-tabs > li.active > a:hover {
+  background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+
+}
+.nav-tabs > li > a {
+  color:black;
+}
+.nav-tabs > li {
+  position: relative;
+  left: 7%;
+}
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+    background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+  border-color: #3ac569;
+}
+</style>
+</body>

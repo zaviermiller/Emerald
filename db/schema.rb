@@ -11,12 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320135221) do
+ActiveRecord::Schema.define(version: 20160404015404) do
 
   create_table "codes", force: :cascade do |t|
+    t.string   "html"
+    t.string   "css"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "help_tickets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "learns", force: :cascade do |t|
+    t.text     "answer"
+    t.string   "instructions"
+    t.string   "title"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.text     "code"
+    t.integer  "learn_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "lessons", ["learn_id"], name: "index_lessons_on_learn_id"
 
   create_table "skills", force: :cascade do |t|
     t.boolean  "html5"
@@ -30,6 +56,17 @@ ActiveRecord::Schema.define(version: 20160320135221) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
   end
+
+  create_table "snippits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "html"
+    t.text     "css"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+  end
+
+  add_index "snippits", ["title"], name: "index_snippits_on_title"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
