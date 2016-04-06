@@ -11,11 +11,6 @@
         <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
         <div class="menu">
             <ul class="dropdownmenu">
-                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Practice", snippits_path %></a></li>
-                <li class="item"><a><i class="fa fa-graduation-cap"></i><%= link_to " Learn", courses_path %></a></li>
-                <li class="item"><a><i class="fa fa-code"></i><%= link_to " Projects", dashboard_path %></a></li>
-                <li class="divider"></li>
-                <li class="item"><a><i class="fa fa-user"></i><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
                 <li class="item"><a><i class="fa fa-sign-out"></i><%= link_to " Log Out", destroy_user_session_path, :method => :delete %></a></li>
             </ul>
         </li>
@@ -25,7 +20,7 @@
     </ul>
     </div>
         <h1>One more step, <%= current_user.firstname.capitalize %>!</h1>
-<h3>Tell us what you know!</h3>
+<h3>Tell us what you know! <i>(if you know nothing, just leave it blank.)</i></h3>
 
         <%= render 'form' %>
 
@@ -40,72 +35,88 @@
      overflow: hidden;
     display: compact;
 	}
-   .items {
+      .items {
         position: relative;
         bottom: 7px;
+        list-style: none;
     }
     .header {
         width: 100%;
         height: 60px;
         background-color:#2e2e2e;
     }
-    .headerlogo {
-        width: 50px;
+    .logo {
+        position: absolute;
+        height: 50px;
+        top: 10px;
+        text-decoration: none;
     }
-.signouttext {
-    color: white;
+    .logo:hover{
+        cursor: pointer;
+    }
+    .round-image-50 {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    bottom: 10px;
+    img { width: 100% }
 }
-.signouttext:hover{
-    color: white;
-    text-decoration: none;
-}
-.signout {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  overflow: hidden;
-  color: white;
-  background-color: rgba(0,0,0,0);
-        border: none;
-        width: 75px;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.dropdown{
     left:75%;
+    position: relative;
+    top: 10px;
+}
+.header a{
+        text-decoration: none;
+    }
+.dropdownmenu {
+    position: absolute;
+    top: 111%;
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+    float:left;
+    padding: 0 0px;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 10px;
+    margin-left: -50px;
+    text-align: left;
+    background-color: #2e2e2e;
+}
+.item a{
+    line-height: 45px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+        color: #fff;
+    font-size: 10px;
     text-decoration: none;
+    font-weight: 20px;
+    text-align: center;
+        color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 20px;
+    padding-left: 10px;
+}
+.item:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3ac569;
     cursor: pointer;
 }
-.signout:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  background: #3ac569;
-  height: 4px;
-  -webkit-transition-property: left, right;
-  transition-property: left, right;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-  text-decoration: none;
-}
-.signout:hover:before, .signout:focus:before, .signout:active:before {
-  left: 0;
-  right: 0;
-  text-decoration: none;
-  color: white;
+
+
+.divider {
+    background-color: #1F1F1F;
+    height: 1px;
+    margin:9px 0;
 }
 </style>
 </body>
