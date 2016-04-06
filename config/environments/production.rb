@@ -50,8 +50,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'codeeemerald.herokuapp.com' }
 
 
-config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
