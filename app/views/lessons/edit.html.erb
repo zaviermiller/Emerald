@@ -1,6 +1,30 @@
 <h1>Editing Lesson</h1>
 
-<%= render 'form' %>
+<%= form_for [@course, @lesson] do |f| %>
+  <% if @lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-<%= link_to 'Show', @lesson %> |
-<%= link_to 'Back', lessons_path %>
+      <ul>
+      <% @lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_area :code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', courses_path, method: :get %>
+<% if @current_lesson.code == @current_course.answer %>
+<% @current_lesson.complete = 1 %>
+<% @current_lesson.save %>
+<% end %>

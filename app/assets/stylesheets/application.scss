@@ -12,3 +12,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@font-face {
+  font-family: "Font";
+  src: url(/assets/Font1.otf) format("truetype");
+}

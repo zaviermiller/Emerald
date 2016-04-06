@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :get_course
 
   # GET /lessons
   # GET /lessons.json
@@ -19,16 +20,22 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
+    @current_lesson ||= Lesson.find_by_id(params[:lesson_id]) || Lesson.find_by_id(params[:id])
+    @current_course = Course.find(@current_lesson.course_id)
+    if current_user = @current_lesson.user_id
+    else
+      redirect_to courses_path
+    end
   end
 
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
+  @lesson = Lesson.new(lesson_params)
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to edit_lesson_path(@lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -42,7 +49,7 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to edit_lesson_path(@lesson), notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -60,15 +67,18 @@ class LessonsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
     end
 
+def get_course
+    @course = Course.find_by_id(params[:course_id])
+end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:code, :learn_id)
+      params.require(:lesson).permit(:code, :course_id, :user_id, :create)
     end
 end

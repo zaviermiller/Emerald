@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
     inclusion: { in: ["mlkclub1"] }
     has_many :skills
     has_many :snippits
+    has_many :lessons
     has_many :help_tickets
+    has_many :courses
     validates :username, :firstname, :lastname,
     presence: true
     

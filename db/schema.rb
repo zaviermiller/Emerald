@@ -11,12 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404015404) do
+ActiveRecord::Schema.define(version: 20160405192838) do
 
   create_table "codes", force: :cascade do |t|
     t.string   "html"
     t.string   "css"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "title"
+    t.string   "instructions"
+    t.text     "answer"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,22 +42,15 @@ ActiveRecord::Schema.define(version: 20160404015404) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "learns", force: :cascade do |t|
-    t.text     "answer"
-    t.string   "instructions"
-    t.string   "title"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "lessons", force: :cascade do |t|
     t.text     "code"
-    t.integer  "learn_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.boolean  "complete"
+    t.boolean  "create"
   end
-
-  add_index "lessons", ["learn_id"], name: "index_lessons_on_learn_id"
 
   create_table "skills", force: :cascade do |t|
     t.boolean  "html5"
