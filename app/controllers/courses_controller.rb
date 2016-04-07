@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.find(group: :group_id)
+    @groups = Group.all
   end
 
   # GET /courses/1
