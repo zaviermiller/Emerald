@@ -23,6 +23,10 @@
       </ul>
     </div>
   <% end %>
+  <span class="jumbotron">
+  <h2 style="text-align: center;"><%= @current_course.title %></h2>
+  <p><%= markdown @current_course.instructions %></p>
+  </span>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :course_id, :value => @course.id %>
       <%= f.hidden_field :create, :value => 1 %>
@@ -32,6 +36,7 @@
         </ul>
         <div class="tab-content">
         <%= f.submit "Submit", class: 'btn btn-primary' %>
+        <%= link_to 'Preview', @lessons, :class => "btn btn-default" %>
         <div class="tab-pane active" id="html5">
 <%= f.text_area(:code, :id => "code")%>
 </div>
@@ -67,7 +72,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
   color: black;
   padding: 10px;
   height: 1000px;
-
+  width: 70%;
   display: all;
 }
 body {
@@ -86,8 +91,11 @@ body {
   left: 30%;
 
 }
+.btn-default{ 
+  left: 20%;
+ }
 .tab-content {
-  width: 70%;
+  background-color: #272822
 }
 .tab-pane {
   border-radius: 0;
@@ -122,6 +130,20 @@ body {
 }
 .nav-tabs {
   border: none;
+}
+p {
+  font-family: Raleway;
+}
+.jumbotron {
+  width: 300px;
+  height: 500px;
+  left: 75%;
+  top: 130px;
+  padding: 10px;
+position: absolute;
+text-align: center;
+border-radius: 15px;
+font-family: Raleway;
 }
 </style>
 </body>

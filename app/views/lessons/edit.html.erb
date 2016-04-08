@@ -1,5 +1,125 @@
-<h1>Editing Lesson</h1>
+<head>
+  <div class="header">
+    <ul class="items">
+    <% content_for :title, "Lesson" %>
+        <li id="logo"><img class="logo" data-alt-src="https://i.imgur.com/9uDwNZU.png" src="https://i.imgur.com/HmqIfcF.png" /></li>
+        <li class="dropdown">            
+        <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
+        <div class="menu">
+            <ul class="dropdownmenu">
+                <li class="item"><a><i class="fa fa-tachometer"></i><%= link_to " Dashboard", dashboard_path %></a></li>
+                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Learn", courses_path %></a></li>
+                <li class="item"><a><i class="fa fa-code"></i><%= link_to " Projects", dashboard_path %></a></li>
+                <li class="divider"></li>
+                <li class="item"><a><i class="fa fa-user"></i><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
+                <li class="item"><a><i class="fa fa-sign-out"></i><%= link_to " Log Out", destroy_user_session_path, :method => :delete %></a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </li>
+    </ul>
+    </div>
+<style type="text/css">
+      .items {
+        position: relative;
+        bottom: 7px;
+    }
+    .header {
+        width: 100%;
+        height: 60px;
+        background-color:#2e2e2e;
+    }
+    .instructions {
+        left:80%;
+        z-index: 1000;
+    }
+    .logo {
+        position: absolute;
+        height: 50px;
+        top: 10px;
+    }
+    .logo:hover{
+        cursor: pointer;
+    }
+    .round-image-50 {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    bottom: 10px;
+    img { width: 100% }
+}
+.dropdown{
+    left:75%;
+    position: relative;
+    bottom: 10px;
+}
+.header a{
+        text-decoration: none;
+    }
+.dropdownmenu {
+    position: absolute;
+    top: 111%;
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+    float:left;
+    padding: 0 0px;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 10px;
+    margin-left: -50px;
+    text-align: left;
+    background-color: #2e2e2e;
+}
+.item a{
+    line-height: 45px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+        color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 20px;
+    text-align: center;
+        color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 20px;
+    padding-left: 10px;
+}
+.item:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3ac569;
+    cursor: pointer;
+}
 
+
+.divider {
+    background-color: #1F1F1F;
+    height: 1px;
+    margin:9px 0;
+}
+</style>
+
+   <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+<link rel="stylesheet" href="http://codemirror.net/theme/monokai.css">
+<script src="http://codemirror.net/lib/codemirror.js"></script>
+<script src="http://codemirror.net/mode/xml/xml.js"></script>
+<script src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
+    <script src="http://codemirror.net/addon/edit/continuecomment.js"></script>
+<script src="http://codemirror.net/mode/javascript/javascript.js"></script>
+<script src="http://codemirror.net/mode/css/css.js"></script>
+    <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+</head>
+<body>
 <%= form_for [@course, @lesson] do |f| %>
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
@@ -12,15 +132,124 @@
       </ul>
     </div>
   <% end %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_area :code %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <span class="jumbotron">
+  <h2 style="text-align: center;"><%= @current_course.title %></h2>
+  <p><%= markdown @current_course.instructions %></p>
+  </span>
+        <ul class="nav nav-tabs">
+        <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
+        <li><a href="#css3", data-toggle=tab>CSS</a></li>
+        </ul>
+        <div class="tab-content">
+        <%= f.submit "Submit", class: 'btn btn-primary' %>
+        <%= link_to 'Preview', @lesson, :class => "btn btn-default" %>
+        <div class="tab-pane active" id="html5">
+<%= f.text_area(:code, :id => "code")%>
+</div>
+<div class="tab-pane" id="css3">
+<%= f.text_area(:css, :id => "css")%>
+</div>
+</div>
 <% end %>
+<script>
+      var delay;
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent",
+                    lineNumbers: true,
+                    lineWrapping: true, theme: "monokai"});
+      editor.on("change", function() {
+        clearTimeout(delay);
+        delay = setTimeout(updatePreview, 300);
+      });
 
-<%= link_to 'Back', courses_path, method: :get %>
+var delay;
+// Initialize CodeMirror editor with a nice html5 canvas demo.
+var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme:"monokai",
+    mode: 'text/html'
+});
+
+</script>
+<style type="text/css">
+  .CodeMirror {
+      font-family: monospace;
+  color: black;
+  padding: 10px;
+  height: 1000px;
+  width: 70%;
+  display: all;
+}
+body {
+  overflow: hidden;
+      padding: 0px;
+     margin: 0;
+     background: url('https://i.imgur.com/mQ1nts6.png');
+     background-size: 1440px 800px;
+     background-repeat:no-repeat;
+     overflow: hidden;
+    display: compact;
+}
+.btn {
+  position: absolute;
+  bottom: 81%;
+  left: 30%;
+
+}
+.btn-default{ 
+  left: 20%;
+ }
+.tab-content {
+  background-color: #272822
+}
+.tab-pane {
+  border-radius: 0;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+  border-color: #3ac569;
+}
+.nav-tabs > li.active > a:hover {
+  background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+
+}
+.nav-tabs > li > a {
+  color:black;
+}
+.nav-tabs {
+  margin-top: 20px;
+}
+.nav-tabs > li {
+  position: relative;
+  left: 7%;
+}
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+    background-color: #3ac569;
+  color:white;
+  border-radius: 0px;
+  border-color: #3ac569;
+}
+.nav-tabs {
+  border: none;
+}
+p {
+  font-family: Raleway;
+}
+.jumbotron {
+  width: 300px;
+  height: 500px;
+  left: 75%;
+  top: 130px;
+  padding: 10px;
+position: absolute;
+text-align: center;
+border-radius: 15px;
+font-family: Raleway;
+}
+</style>
+</body>

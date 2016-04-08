@@ -1,8 +1,2 @@
-
-<p>
-  <strong>Code:</strong>
-  <%= @lesson.create%>
-</p>
-
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', courses_path %>
+<% content_for :title, "Preview" %>
+<%= Lesson.find(params[:id]).code.html_safe %>
