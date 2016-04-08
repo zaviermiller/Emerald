@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405192838) do
+ActiveRecord::Schema.define(version: 20160407134738) do
 
   create_table "codes", force: :cascade do |t|
     t.string   "html"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160405192838) do
     t.integer  "user_id"
     t.boolean  "complete"
     t.boolean  "create"
+    t.text     "css"
   end
 
   create_table "skills", force: :cascade do |t|

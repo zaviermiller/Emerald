@@ -6,6 +6,8 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
     @lessons = Lesson.all
+    @current_lesson ||= Lesson.find_by_id(params[:lesson_id]) || Lesson.find_by_id(params[:id])
+    @current_course = Course.find(@current_lesson.course_id)
   end
 
   # GET /lessons/1
@@ -16,6 +18,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @current_course ||= Course.find_by_id(params[:course_id]) || Course.find_by_id(params[:id])
   end
 
   # GET /lessons/1/edit
@@ -26,6 +29,10 @@ class LessonsController < ApplicationController
     else
       redirect_to courses_path
     end
+      if @current_lesson.code.include?(@current_course.answer)
+        @current_lesson.complete = 1 
+        @current_lesson.save 
+      end 
   end
 
   # POST /lessons

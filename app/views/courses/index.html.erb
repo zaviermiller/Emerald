@@ -1,55 +1,253 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.title %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <tr>
-        <td>
-        <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-    </tr>
-  </thead>
-
+  <div class="header">
+    <ul class="items">
+    <% content_for :title, "Learn" %>
+        <%= link_to dashboard_path do %>
+        <li id="logo"><img class="logo" data-alt-src="https://i.imgur.com/9uDwNZU.png" src="https://i.imgur.com/HmqIfcF.png" /></li>
+        <% end %>
+        <li class="dropdown">            
+        <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
+        <div class="menu">
+            <ul class="dropdownmenu">
+                <li class="item"><a><i class="fa fa-tachometer"></i><%= link_to " Dashboard", dashboard_path %></a></li>
+                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Practice", courses_path %></a></li>
+                <li class="item"><a><i class="fa fa-code"></i><%= link_to " Projects", dashboard_path %></a></li>
+                <li class="divider"></li>
+                <li class="item"><a><i class="fa fa-user"></i><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
+                <li class="item"><a><i class="fa fa-sign-out"></i><%= link_to " Log Out", destroy_user_session_path, :method => :delete %></a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </li>
+    </ul>
+    </div>
   <tbody>
     <% @courses.each do |course| %>
       <tr>
+<% if Lesson.exists?(complete: 1, course: course) %>
+        <td>
+        <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
+        <div class="panel panel-default">
+      <div class="panel-body">
+      <p class="complete"><span class="fa-stack fa-lg">
+  <i class="fa fa-circle-thin fa-stack-2x"></i>
+  <i class="fa fa-check fa-stack-1x "></i>
+</span></p>
+      <h3 class="text"><%=course.title%></h3>
+      <% if current_user.master? %>
+          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-2x fa-trash-o"></i>
+            <% end %></p>
+            <p class="pencil"><%= link_to edit_course_path(course) do%>
+            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+            <% end %>
+          </div>
+           <% end %>
+          </div>
+          <% end %>
+          </td>
+      <% else %>
       <% if Lesson.exists?(user: current_user, course: course) %>
-        <td><%= link_to course.title, edit_lesson_path(Lesson.find_by(user: current_user, course: course)) %></td>
+        <span class="panel panel-default complete">
+        <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
+      <div class="panel-body">
+      <h3 class="text"><%=course.title%></h3>
+      <% if current_user.master? %>
+          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-2x fa-trash-o"></i>
+            <p class="pencil"><%= link_to edit_course_path(course) do%>
+            <i class="fa fa-2x fa-pencil", id="pencil"></i>
+            <% end %>
+          <% end %></p>
+          <% end %>
+          </div>
+          <% end %>
+          </span></td>
         <% else %>
-        <td><%= link_to course.title, new_course_lesson_path(course) %></td>
-        <% end %>
-        <% if current_user.master? %>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-        <% end %>
-      </tr>
+        <td>
+        <%= link_to new_course_lesson_path(course) do%>
+        <div class="panel panel-default">
+      <div class="panel-body">
+      <h3 class="text"><%=course.title%></h3>
+      <% if current_user.master? %>
+          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-2x fa-trash-o"></i>
+            <% end %></p>
+            <p class="pencil"><%= link_to edit_course_path(course) do%>
+            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+            <% end %>
+          </div>
+           <% end %>
+          </div>
+          <% end %>
+          </td>
+          <% end %>
+          <% end %>
+          <% end %>
+                  <td>
+          <% if current_user.master? %>
+          <%= link_to new_course_path do %>
+            <div class="panel panel-default new">
+              <div class="panel-body">
+              <h3 class="text"><i class="fa fa-5x fa-plus"></i></h3>
     <% end %>
+    <% end %>
+              </div>
+            </div>
+          </td>
+      </tr>
   </tbody>
 </table>
 
-<br>
-<% if current_user.master? %>
-<%= link_to 'New Course', new_course_path %>
-<% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<style type="text/css">
+.new {
+  background-color: #ddd;
+  border-color: #aaa;
+}
+.panel-default {
+  width: 500px;
+  height: 100px;
+  margin-left: -250px;
+  position: relative;
+  left: 50%;
+  display: block;
+  border-radius: 20px;
+}
+.text {
+  color:black;
+  text-align: center;
+  position: relative;
+  font-family: Raleway;
+}
+.text:hover {
+  text-decoration: underline;
+}
+.fa-stack {
+  top: 15px;
+}
+.trash, .fa-trash-o{
+  color: black;
+  text-align: right;
+  position: relative;
+  padding-right: 10px;
+  bottom: 19px;
+}
+.fa-trash-o:hover {
+  color: rgb(241,92,92);
+}
+.pencil, #pencil{
+  color: black;
+  text-align: right;
+  position: relative;
+  right: 35px;
+  bottom: 38.5px;
+}
+#pencil:hover {
+  color: #EFDC05;
+}
+.complete, .fa-check{
+  color: #3ac569;
+  position: absolute;
+  display: inline;
+}
+.fa-plus{
+  color: #bbb;
+  text-align: center;
+  position: relative;
+  bottom: 42px;
+}
+.fa-plus:hover {
+  color: #aaa;
+}
+      .items {
+        position: relative;
+        bottom: 7px;
+        list-style: none;
+    }
+    .header {
+        width: 100%;
+        height: 60px;
+        background-color:#2e2e2e;
+        margin-bottom: 50px;
+    }
+    .logo {
+        position: absolute;
+        height: 50px;
+        top: 10px;
+        text-decoration: none;
+    }
+    .logo:hover{
+        cursor: pointer;
+    }
+    .round-image-50 {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    bottom: 10px;
+    img { width: 100% }
+}
+.dropdown{
+    left:75%;
+    position: relative;
+    top: 10px;
+}
+.header a{
+        text-decoration: none;
+    }
+.dropdownmenu {
+    position: absolute;
+    top: 111%;
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+    float:left;
+    padding: 0 0px;
+    margin-right: 20px;
+    list-style: none;
+    font-size: 10px;
+    margin-left: -50px;
+    text-align: left;
+    background-color: #2e2e2e;
+}
+.item a{
+    line-height: 45px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+        color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 20px;
+    text-align: center;
+        color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 20px;
+    padding-left: 10px;
+}
+.item:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3ac569;
+    cursor: pointer;
+}
 
-<br>
 
-<%= link_to 'New Group', new_group_path %>
+.divider {
+    background-color: #1F1F1F;
+    height: 1px;
+    margin:9px 0;
+}
+body {
+       background: url('https://i.imgur.com/mQ1nts6.png');
+     background-size: 1440px 800px;
+     background-repeat:repeat-y;
+     overflow: scroll;
+    display: compact;
+}
+</style>

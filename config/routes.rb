@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :groups
   resources :courses do
   resources :lessons, shallow:true
 end
