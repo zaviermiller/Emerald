@@ -33,6 +33,7 @@ class LessonsController < ApplicationController
         @current_lesson.complete = 1
         flash[:notice] = "Lesson complete! "
         @current_lesson.save 
+      end
   end
 
   # POST /lessons
