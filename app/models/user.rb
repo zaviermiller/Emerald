@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     has_many :lessons
     has_many :help_tickets
     has_many :courses
-    validates :username, :firstname, :lastname,
+    validates :username, :firstname, :lastname, :email,
     presence: true
     
     has_attached_file :avatar, styles: {large: "600x600>", medium: "300x300>", thumb: "50x50#"}, default_url: "/images/:style/missing.png"

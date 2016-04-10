@@ -17,7 +17,7 @@ end
 				devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :firstname, :lastname, :password, :email, :password_confirmation, :sign_up_code, :avatar) }
 				devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :password, :remember_me) }
     			devise_parameter_sanitizer.for(:account_update) { |u| 
-     			u.permit(:password, :password_confirmation, :current_password) 
+     			u.permit(:password, :password_confirmation, :current_password, :username, :email, :avatar) 
     }
 		end
 

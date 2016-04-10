@@ -9,6 +9,13 @@
         <%= f.email_field :email, class: "form" %>
     </div>
 
+<div class="-parent">
+    <%= f.label :username, class: "label" %>
+    <div>
+        <%= f.text_field :username, class: "form" %>
+    </div>
+</div>
+
     <div class="-parent">
     <%= f.label :password, "New Password", class: "label" %><i>(leave blank if you don't want to change it)</i>
     <div class="password">
@@ -37,12 +44,12 @@
         <%= f.file_field :avatar %>
     </div>
 </div>
-
-
 <%= f.submit "Update", class: "signup" %>
 <% end %>
 
+<div class="yeh">
 <%= button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'cancel' %>
+</div>
 <%= link_to "Back", :back, class: 'btn btn-default btn-s' %>
 
 </div>
