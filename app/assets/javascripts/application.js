@@ -41,3 +41,4 @@ $(document).ready(function() {
     $(function () {
         $('img.logo').hover(sourceSwap, sourceSwap);
     });
+    document.getElementById("CodeMirror").reload();
