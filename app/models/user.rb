@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base 
   validates :sign_up_code,
     presence: true,
-    inclusion: { in: ["mlkclub1"] }
+    inclusion: { in: ["mlkclub69"] }
     has_many :skills
     has_many :snippits
     has_many :lessons
