@@ -25,7 +25,7 @@
   <% end %>
   <span class="jumbotron">
   <h2 style="text-align: center;"><%= @current_course.title %></h2>
-  <p><%= markdown @current_course.instructions %></p>
+  <p><%= Course.find(@current_course).instructions.html_safe %></p>
   </span>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :course_id, :value => @course.id %>
@@ -36,7 +36,7 @@
         </ul>
         <div class="tab-content">
         <%= f.submit "Submit", class: 'btn btn-primary' %>
-        <%= link_to 'Preview', @lessons, :class => "btn btn-default" %>
+        <%= link_to 'Preview', :class => "btn btn-default" %>
         <div class="tab-pane active" id="html5">
 <%= f.text_area(:code, :id => "code")%>
 </div>
@@ -82,7 +82,6 @@ body {
      background: url('https://i.imgur.com/mQ1nts6.png');
      background-size: 1440px 800px;
      background-repeat:no-repeat;
-     overflow: hidden;
     display: compact;
 }
 .btn {

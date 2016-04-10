@@ -30,9 +30,10 @@ class LessonsController < ApplicationController
       redirect_to courses_path
     end
       if @current_lesson.code.include?(@current_course.answer)
-        @current_lesson.complete = 1 
+        @current_lesson.complete = 1
+        flash[:notice] = "Lesson complete! "
         @current_lesson.save 
-      end 
+    end
   end
 
   # POST /lessons

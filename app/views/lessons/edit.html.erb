@@ -8,7 +8,7 @@
         <div class="menu">
             <ul class="dropdownmenu">
                 <li class="item"><a><i class="fa fa-tachometer"></i><%= link_to " Dashboard", dashboard_path %></a></li>
-                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Learn", courses_path %></a></li>
+                <li class="item"><a><i class="fa fa-pencil"></i><%= link_to " Practice", snippits_path %></a></li>
                 <li class="item"><a><i class="fa fa-code"></i><%= link_to " Projects", dashboard_path %></a></li>
                 <li class="divider"></li>
                 <li class="item"><a><i class="fa fa-user"></i><%= link_to " Edit Profile", edit_user_registration_path %></a></li>
@@ -20,11 +20,35 @@
     </li>
     </ul>
     </div>
+      <% if notice %>        
+    <div id="notice_wrapper">
+<p class="notice"><%= notice %><%=link_to "Back", courses_path, :class => "notice" %></p>
+</div>
+<% end %>
 <style type="text/css">
       .items {
         position: relative;
         bottom: 7px;
     }
+      #notice_wrapper {
+    width: 100%;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    background-color: rgba(58,197,105,.85);
+  }
+  .notice {
+    padding: 2.5rem 0;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 700;
+    opacity: 1;
+  }
+  .notice:hover{
+    color: white;
+  }
     .header {
         width: 100%;
         height: 60px;
@@ -134,7 +158,7 @@
   <% end %>
   <span class="jumbotron">
   <h2 style="text-align: center;"><%= @current_course.title %></h2>
-  <p><%= markdown @current_course.instructions %></p>
+  <p><%=  Course.find(@current_course).instructions.html_safe %></p>
   </span>
         <ul class="nav nav-tabs">
         <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
@@ -242,7 +266,7 @@ p {
 }
 .jumbotron {
   width: 300px;
-  height: 500px;
+  height: 485px;
   left: 75%;
   top: 130px;
   padding: 10px;
@@ -250,6 +274,7 @@ position: absolute;
 text-align: center;
 border-radius: 15px;
 font-family: Raleway;
+overflow: scroll;
 }
 </style>
 </body>

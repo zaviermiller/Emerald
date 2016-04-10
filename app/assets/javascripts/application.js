@@ -27,8 +27,8 @@
         }, 2000);
     });
 $(document).ready(function() {
-      $(document).on('click','.round-image-50', function(event) {
-              $('.dropdownmenu').slideToggle("slow");
+      $('.round-image-50').click(function(event) {
+              $('.dropdownmenu').slideToggle(500);
       });
   });
         var sourceSwap = function () {
