@@ -38,15 +38,14 @@
     </div>
 </div>
 
-        <%= f.submit "Update", class: "signup" %>
 
+<%= f.submit "Update", class: "signup" %>
+<% end %>
 
 <%= button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'cancel' %>
 <%= link_to "Back", :back, class: 'btn btn-default btn-s' %>
 
 </div>
-
-<% end %>
 
 <style type="text/css">
         body {
