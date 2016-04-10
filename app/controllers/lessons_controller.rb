@@ -33,7 +33,6 @@ class LessonsController < ApplicationController
         @current_lesson.complete = 1
         flash[:notice] = "Lesson complete! "
         @current_lesson.save 
-    end
   end
 
   # POST /lessons
@@ -43,7 +42,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to edit_lesson_path(@lesson), notice: 'Lesson was successfully created.' }
+        format.html { redirect_to edit_lesson_path(@lesson) }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -57,7 +56,7 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to edit_lesson_path(@lesson), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to edit_lesson_path(@lesson) }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -71,7 +70,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to lessons_url }
       format.json { head :no_content }
     end
   end
