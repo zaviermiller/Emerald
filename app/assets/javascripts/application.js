@@ -16,11 +16,6 @@
 //= require turbolinks
     $(document).ready(function() {
         setTimeout(function() {
-            $('#notice_wrapper').fadeOut("slow", function() {
-                $(this).remove();
-            });
-        }, 2000);
-        setTimeout(function() {
             $('#alert_wrapper').fadeOut("slow", function() {
                 $(this).remove();
             });
@@ -31,13 +26,3 @@ $(document).ready(function() {
               $('.dropdownmenu').slideToggle("slow");
       });
   });
-        var sourceSwap = function () {
-        var $this = $(this);
-        var newSource = $this.data('alt-src');
-        $this.data('alt-src', $this.attr('src'));
-        $this.attr('src', newSource);
-    }
-
-    $(function () {
-        $('img.logo').hover(sourceSwap, sourceSwap);
-    });

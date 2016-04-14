@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :courses do
   resources :lessons, shallow:true
 end
-  resources :help_tickets
   resources :snippits
   get 'code/langselect'
 

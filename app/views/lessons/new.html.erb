@@ -162,7 +162,7 @@
         <li><a href="#css3", data-toggle=tab>CSS</a></li>
         </ul>
         <div class="tab-content">
-        <%= f.submit "Submit", class: 'btn btn-primary' %>
+        <%= f.submit "Save", class: 'btn btn-primary submit' %>
         <div class="tab-pane active" id="html5">
 <%= f.text_area(:code, :id => "code")%>
 </div>
@@ -211,15 +211,45 @@ body {
      overflow: hidden;
     display: compact;
 }
-.btn {
+.btn-primary {
   position: absolute;
-  bottom: 81%;
-  left: 30%;
-
+  bottom: 82%;
+  left: 70%;
+  border-radius: 5px;
+  background-color: #3ac569;
+  border-color:#3ac569;
 }
-.btn-default{ 
-  left: 20%;
- }
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
 .tab-content {
   background-color: #272822
 }
@@ -247,6 +277,10 @@ body {
 .nav-tabs > li {
   position: relative;
   left: 7%;
+}
+.submit {
+  left: 65%;
+  position: absolute;
 }
 .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
     background-color: #3ac569;

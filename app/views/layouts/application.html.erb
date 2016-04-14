@@ -20,22 +20,6 @@
 body {
   overflow-x:hidden;
 }
-	#notice_wrapper {
-		width: 100%;
-		position: absolute;
-		z-index: 99;
-		top: 0;
-		background-color: rgba(58,197,105,.85);
-	}
-	.notice {
-		padding: 2.5rem 0;
-		color: white;
-		letter-spacing: 1px;
-		font-size: 1.25rem;
-		text-align: center;
-		font-weight: 700;
-		opacity: 1;
-	}
 		#alert_wrapper {
 		width: 100%;
 		position: absolute;
@@ -101,6 +85,9 @@ body {
 .btn-default:hover:before, .btn-default:focus:before, .btn-default:active:before {
   left: 0;
   right: 0;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+    background: rgba(0,0,0,0,);
 }
 </style>
 

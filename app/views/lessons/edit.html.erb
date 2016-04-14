@@ -33,8 +33,8 @@
       #notice_wrapper {
     width: 100%;
     position: absolute;
-    z-index: 10000;
-    top: 0;
+    z-index: 1000;
+    bottom: 0px;
     background-color: rgba(58,197,105,.85);
   }
   .notice {
@@ -86,6 +86,7 @@
 }
 .header a{
         text-decoration: none;
+
     }
 .dropdownmenu {
     position: absolute;
@@ -93,10 +94,12 @@
     min-width: 160px;
     z-index: 1000;
     display: none;
+
     float:left;
     padding: 0 0px;
     margin-right: 20px;
     list-style: none;
+
     font-size: 10px;
     margin-left: -50px;
     text-align: left;
@@ -106,20 +109,23 @@
     line-height: 45px;
     padding-bottom: 3px;
     padding-top: 3px;
-        color: #fff;
+        color: #000;
     font-size: 10px;
     text-decoration: none;
+
     font-weight: 20px;
     text-align: center;
-        color: #fff;
+        color: #000;
     font-size: 20px;
     text-decoration: none;
+
     font-weight: 20px;
     padding-left: 10px;
 }
 .item:hover {
     text-decoration: none;
-    color: #fff;
+
+    color: #000;
     background-color: #3ac569;
     cursor: pointer;
 }
@@ -165,8 +171,8 @@
         <li><a href="#css3", data-toggle=tab>CSS</a></li>
         </ul>
         <div class="tab-content">
-        <%= f.submit "Submit", class: 'btn btn-primary' %>
-        <%= link_to 'Preview', @lesson, :class => "btn btn-default" %>
+        <%= f.submit "Save", class: 'btn btn-primary submit' %>
+        <%= link_to 'Preview', @lesson, :class => "btn btn-primary" %>
         <div class="tab-pane active" id="html5">
 <%= f.text_area(:code, :id => "code")%>
 </div>
@@ -201,7 +207,7 @@ var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
       font-family: monospace;
   color: black;
   padding: 10px;
-  height: 1000px;
+  height: 700px;
   width: 70%;
   display: all;
 }
@@ -215,15 +221,49 @@ body {
      overflow: hidden;
     display: compact;
 }
-.btn {
+.btn-primary {
   position: absolute;
-  bottom: 81%;
-  left: 30%;
-
+  bottom: 82%;
+  left: 70%;
+  border-radius: 5px;
+  background-color: #3ac569;
+  border-color:#3ac569;
 }
-.btn-default{ 
-  left: 20%;
- }
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.submit {
+  left: 65%;
+  position: absolute;
+}
 .tab-content {
   background-color: #272822
 }
