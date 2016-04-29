@@ -9,11 +9,12 @@
 <script src="http://codemirror.net/mode/css/css.js"></script>
     <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
     <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+    <script src="http://codemirror.net/addon/edit/closetag.js"></script>
 </head>
 <body>
 <%= form_for(@snippit) do |f| %>
-        <%= f.submit "Save", class: 'btn btn-primary' %>
-        <%= link_to 'Preview', @snippit, :class => "btn btn-default" %>
+        <%= f.submit "Save", class: 'btn btn-primary submit' %>
+        <%= link_to 'Preview', @snippit, :class => "btn btn-primary " %>
         <ul class="nav nav-tabs">
         <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
         <li><a href="#css3", data-toggle=tab>CSS</a></li>
@@ -28,10 +29,15 @@
 </div>
 <% end %>
 <script>
+$(document).ready(function() {
       var delay;
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent",
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/html",
+         tabMode: "indent",
                     lineNumbers: true,
-                    lineWrapping: true, theme: "monokai"});
+                    lineWrapping: true,
+                     theme: "monokai",
+                     autoRefresh: true});
       editor.on("change", function() {
         clearTimeout(delay);
         delay = setTimeout(updatePreview, 300);
@@ -40,20 +46,20 @@
 var delay;
 // Initialize CodeMirror editor with a nice html5 canvas demo.
 var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
-    lineNumbers: true,
-    styleActiveLine: true,
-    matchBrackets: true,
+    tabMode: "indent",
+                    lineNumbers: true,
+                    lineWrapping: true,
     theme:"monokai",
-    mode: 'text/html'
+    mode: 'text/css'
 });
-
+});
 </script>
 <style type="text/css">
   .CodeMirror {
       font-family: monospace;
   color: black;
   padding: 10px;
-  height: 1000px;
+  height: 500px;
   display: all;
 }
 body {
@@ -65,6 +71,52 @@ body {
      background-repeat:no-repeat;
      overflow: hidden;
     display: compact;
+}
+.btn-primary {
+  position: absolute;
+  bottom: 82%;
+  left: 70%;
+  border-radius: 5px;
+  background-color: #3ac569;
+  border-color:#3ac569;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #fff;
+  background-color: #47B16A;
+  border-color: #47B16A;
+}
+.submit {
+  left: 65%;
+  position: absolute;
+}
+.tab-content {
+  background-color: #272822
 }
 .tab-pane {
   border-radius: 0;
@@ -84,6 +136,9 @@ body {
 .nav-tabs > li > a {
   color:black;
 }
+.nav-tabs {
+  margin-top: 20px;
+}
 .nav-tabs > li {
   position: relative;
   left: 7%;
@@ -93,6 +148,9 @@ body {
   color:white;
   border-radius: 0px;
   border-color: #3ac569;
+}
+.nav-tabs {
+  border: none;
 }
 </style>
 </body>
