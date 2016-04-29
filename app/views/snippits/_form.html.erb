@@ -14,7 +14,7 @@
 <body>
 <%= form_for(@snippit) do |f| %>
         <%= f.submit "Save", class: 'btn btn-primary submit' %>
-        <%= link_to 'Preview', @snippit, :class => "btn btn-primary " %>
+        <%= link_to 'Preview', @snippit, :class => "btn btn-primary", :target => "_ " %>
         <ul class="nav nav-tabs">
         <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
         <li><a href="#css3", data-toggle=tab>CSS</a></li>

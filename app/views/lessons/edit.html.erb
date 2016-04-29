@@ -148,44 +148,39 @@
 <script src="http://codemirror.net/mode/css/css.js"></script>
     <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
     <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+    <script src="http://codemirror.net/addon/display/autorefresh.js"></script>
 </head>
 <body>
-<%= form_for [@course, @lesson] do |f| %>
-  <% if @lesson.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-      <ul>
-      <% @lesson.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <span class="jumbotron">
   <h2 style="text-align: center;"><%= @current_course.title %></h2>
   <p><%=  Course.find(@current_course).instructions.html_safe %></p>
   </span>
-        <ul class="nav nav-tabs">
-        <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
-        <li><a href="#css3", data-toggle=tab>CSS</a></li>
-        </ul>
-        <div class="tab-content">
-        <%= f.submit "Save", class: 'btn btn-primary submit' %>
-        <%= link_to 'Preview', @lesson, :class => "btn btn-primary" %>
-        <div class="tab-pane active" id="html5">
-<%= f.text_area(:code, :id => "code")%>
-</div>
-<div class="tab-pane" id="css3">
-<%= f.text_area(:css, :id => "css")%>
-</div>
-</div>
-<% end %>
+<%= form_for [@course, @lesson] do |f| %>
+          <%= f.submit "Save", class: 'btn btn-primary submit' %>
+          <%= link_to 'Preview', @lesson, :class => "btn btn-primary", :target => "_ " %>
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#html5", data-toggle=tab>HTML</a></li>
+          <li><a href="#css3", data-toggle=tab>CSS</a></li>
+          </ul>
+          <div class="tab-content">
+          <div class="tab-pane active" id="html5">
+  <%= f.text_area(:code, :id => "code")%>
+  </div>
+  <div class="tab-pane" id="css3">
+  <%= f.text_area(:css, :id => "css")%>
+  </div>
+  </div>
+  <% end %>
 <script>
+$(document).ready(function() {
       var delay;
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent",
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/html",
+         tabMode: "indent",
                     lineNumbers: true,
-                    lineWrapping: true, theme: "monokai"});
+                    lineWrapping: true,
+                     theme: "monokai",
+                     autoRefresh: true});
       editor.on("change", function() {
         clearTimeout(delay);
         delay = setTimeout(updatePreview, 300);
@@ -194,13 +189,14 @@
 var delay;
 // Initialize CodeMirror editor with a nice html5 canvas demo.
 var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
-    lineNumbers: true,
-    styleActiveLine: true,
-    matchBrackets: true,
+    tabMode: "indent",
+                    lineNumbers: true,
+                    lineWrapping: true,
     theme:"monokai",
-    mode: 'text/html'
+    mode: 'text/css',
+    autoRefresh: true
 });
-
+});
 </script>
 <style type="text/css">
   .CodeMirror {

@@ -14,6 +14,11 @@ class SnippitsController < ApplicationController
     if :html.empty?
       redirect_to edit_snippit_path(@snippit)
     end
+    @current_snippit ||= Snippit.find_by_id(params[:snippit_id]) || Snippit.find_by_id(params[:id])
+    @html = @current_snippit.html
+    @css = @current_snippit.css
+    @css = "<style>#{@css}</style>"
+    @code = "#{@html} #{@css}"
   end
 
   # GET /snippits/new

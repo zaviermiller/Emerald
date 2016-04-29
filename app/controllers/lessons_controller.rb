@@ -13,6 +13,11 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    @current_lesson ||= Lesson.find_by_id(params[:lesson_id]) || Lesson.find_by_id(params[:id])
+    @html = @current_lesson.code
+    @css = @current_lesson.css
+    @css = "<style>#{@css}</style>"
+    @code = "#{@html} #{@css}"
   end
 
   # GET /lessons/new
@@ -45,9 +50,11 @@ class LessonsController < ApplicationController
       if @lesson.save
         format.html { redirect_to edit_lesson_path(@lesson) }
         format.json { render :show, status: :created, location: @lesson }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end
@@ -87,6 +94,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:code, :course_id, :user_id, :create)
+      params.require(:lesson).permit(:code, :course_id, :user_id, :create, :css)
     end
 end
