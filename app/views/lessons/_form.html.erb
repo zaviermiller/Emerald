@@ -9,6 +9,7 @@
 <script src="http://codemirror.net/mode/css/css.js"></script>
     <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
     <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+    <script src="http://codemirror.net/addon/display/autorefresh.js"></script>
 </head>
 <body>
 <%= form_for [@course, @lesson] do |f| %>
@@ -48,8 +49,10 @@
 <script>
       var delay;
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {mode: "text/html", tabMode: "indent",
-                    lineNumbers: true,
-                    lineWrapping: true, theme: "monokai"});
+        lineNumbers: true,
+        lineWrapping: true,
+        theme: "monokai",
+        autoRefresh:true});
       editor.on("change", function() {
         clearTimeout(delay);
         delay = setTimeout(updatePreview, 300);
@@ -62,7 +65,8 @@ var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
     styleActiveLine: true,
     matchBrackets: true,
     theme:"monokai",
-    mode: 'text/html'
+    mode: 'text/html',
+    autoRefresh:true;
 });
 
 </script>

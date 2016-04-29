@@ -2,7 +2,7 @@
     <ul class="items">
     <% content_for :title, "Learn" %>
         <%= link_to dashboard_path do %>
-        <li id="logo"><img class="logo" data-alt-src="https://i.imgur.com/9uDwNZU.png" src="https://i.imgur.com/HmqIfcF.png" /></li>
+        <li id="logo"><img class="logo" src="https://i.imgur.com/9uDwNZU.png" /></li>
         <% end %>
         <li class="dropdown">            
         <%= image_tag(current_user.avatar.url(:thumb), :class => "round-image-50") %>
@@ -38,7 +38,7 @@
           <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <i class="fa fa-2x fa-trash-o"></i>
             <% end %></p>
-            <p class="pencil"><%= link_to edit_course_path(course) do%>
+            <p class="pencil"><%= link_to edit_course_path(course) do%></p>
             <i class="fa fa-2x fa-pencil" id= "pencil"></i>
             <% end %>
           </div>
@@ -112,6 +112,7 @@
   left: 50%;
   display: block;
   border-radius: 20px;
+  margin-top: 40px;
 }
 .text {
   color:black;
@@ -120,7 +121,7 @@
   font-family: Raleway;
 }
 .text:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .fa-stack {
   top: 15px;
@@ -247,7 +248,8 @@ body {
        background: url('https://i.imgur.com/mQ1nts6.png');
      background-size: 1440px 800px;
      background-repeat:repeat-y;
-     overflow: hidden;
+     overflow-x:hidden;
+     overflow-y: auto;
     display: compact;
 }
 </style>

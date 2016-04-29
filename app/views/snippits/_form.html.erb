@@ -9,7 +9,7 @@
 <script src="http://codemirror.net/mode/css/css.js"></script>
     <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
     <script src="http://codemirror.net/addon/edit/closetag.js"></script>
-    <script src="http://codemirror.net/addon/edit/closetag.js"></script>
+    <script src="http://codemirror.net/addon/display/autorefresh.js"></script>
 </head>
 <body>
 <%= form_for(@snippit) do |f| %>
@@ -50,7 +50,8 @@ var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
                     lineNumbers: true,
                     lineWrapping: true,
     theme:"monokai",
-    mode: 'text/css'
+    mode: 'text/css',
+    autoRefresh: true
 });
 });
 </script>
