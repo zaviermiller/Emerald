@@ -18,7 +18,9 @@ class SnippitsController < ApplicationController
     @html = @current_snippit.html
     @css = @current_snippit.css
     @css = "<style>#{@css}</style>"
-    @code = "#{@html} #{@css}"
+    @js = @current_snippit.javascript
+    @js = "<script type='text/javascript'>#{@js}</script>"
+    @code = "#{@html} #{@js} #{@css}"
   end
 
   # GET /snippits/new
@@ -78,6 +80,6 @@ class SnippitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def snippit_params
-      params.require(:snippit).permit(:user_id, :html, :css, :title)
+      params.require(:snippit).permit(:user_id, :html, :css, :title, :javascript)
     end
 end

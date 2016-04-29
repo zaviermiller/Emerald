@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407134738) do
+ActiveRecord::Schema.define(version: 20160429213809) do
 
   create_table "codes", force: :cascade do |t|
     t.string   "html"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160407134738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
+    t.text     "javascript"
   end
 
   add_index "snippits", ["title"], name: "index_snippits_on_title"

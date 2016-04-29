@@ -195,6 +195,7 @@ DEPENDENCIES
   pygments.rb (~> 0.6.3)
   rails (= 4.2.4)
   rails_12factor
+  rake (~> 10.5.0)
   redcarpet (~> 3.2.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
