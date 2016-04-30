@@ -155,7 +155,7 @@
   <h2 style="text-align: center;"><%= @current_course.title %></h2>
   <p><%=  Course.find(@current_course).instructions.html_safe %></p>
   </span>
-<%= form_for [@course, @lesson] do |f| %>
+<%= form_for [@course, @lesson], remote: true do |f| %>
           <%= f.submit "Save", class: 'btn btn-primary submit' %>
           <%= link_to 'Preview', @lesson, :class => "btn btn-primary", :target => "_ " %>
           <ul class="nav nav-tabs">

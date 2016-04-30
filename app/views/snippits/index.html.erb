@@ -27,7 +27,7 @@
     </div>
     <% end %>
     <% @snippits.each do |snippit| %>
-      <span class="panel panel-default">
+      <span class="panel panel-default" id="snippit_<%= snippit.id %>">
       <%= link_to edit_snippit_path(snippit), :class => "text" do %>
       <div class="panel-body">
         <h3 class="text"><%=snippit.title%></h3>
@@ -179,7 +179,8 @@ body {
        background: url('https://i.imgur.com/mQ1nts6.png');
      background-size: 1440px 800px;
      background-repeat:no-repeat;
-     overflow: auto;
+     overflow-y: auto;
+     overflow-x: hidden;
     display: compact;
 }
 </style>

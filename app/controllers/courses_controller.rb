@@ -53,10 +53,12 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course = Course.find(params[:id])
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_path, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
+      format.js {}
     end
   end
 
@@ -70,6 +72,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :instructions, :answer)
+      params.require(:course).permit(:title, :instructions, :answer, :cssanswer)
     end
 end

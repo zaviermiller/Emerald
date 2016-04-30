@@ -27,7 +27,7 @@
 <% if Lesson.exists?(user: current_user, course: course, complete: true) %>
         <td>
         <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="course_<%= course.id %>">
       <div class="panel-body">
       <p class="complete"><span class="fa-stack fa-lg">
   <i class="fa fa-circle-thin fa-stack-2x"></i>
@@ -35,10 +35,10 @@
 </span></p>
       <h3 class="text"><%=course.title%></h3>
       <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
             <i class="fa fa-2x fa-trash-o"></i>
             <% end %></p>
-            <p class="pencil"><%= link_to edit_course_path(course) do%></p>
+            <p class="pencil"><%= link_to edit_course_path(course) do%>
             <i class="fa fa-2x fa-pencil" id= "pencil"></i>
             <% end %>
           </div>
@@ -48,29 +48,31 @@
           </td>
       <% else %>
       <% if Lesson.exists?(user: current_user, course: course) %>
-        <span class="panel panel-default complete">
+        <td>
         <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
+        <div class="panel panel-default" id="course_<%= course.id %>">
       <div class="panel-body">
       <h3 class="text"><%=course.title%></h3>
       <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
             <i class="fa fa-2x fa-trash-o"></i>
+            <% end %></p>
             <p class="pencil"><%= link_to edit_course_path(course) do%>
-            <i class="fa fa-2x fa-pencil", id="pencil"></i>
+            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
             <% end %>
-          <% end %></p>
-          <% end %>
+          </div>
+           <% end %>
           </div>
           <% end %>
-          </span></td>
+          </td>
         <% else %>
         <td>
         <%= link_to new_course_lesson_path(course) do%>
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="course_<%= course.id %>">
       <div class="panel-body">
       <h3 class="text"><%=course.title%></h3>
       <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
             <i class="fa fa-2x fa-trash-o"></i>
             <% end %></p>
             <p class="pencil"><%= link_to edit_course_path(course) do%>

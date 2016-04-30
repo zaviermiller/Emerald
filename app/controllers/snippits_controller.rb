@@ -67,10 +67,12 @@ class SnippitsController < ApplicationController
   # DELETE /snippits/1
   # DELETE /snippits/1.json
   def destroy
+    @snippit = Snippit.find(params[:id])
     @snippit.destroy
     respond_to do |format|
-      format.html { redirect_to snippits_url, alert: 'Snippit was successfully destroyed.' }
+      format.html { redirect_to snippits_url}
       format.json { head :no_content }
+      format.js {}
     end
   end
 
