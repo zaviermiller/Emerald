@@ -8,11 +8,12 @@
 <script src="http://codemirror.net/mode/javascript/javascript.js"></script>
 <script src="http://codemirror.net/mode/css/css.js"></script>
     <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="http://codemirror.net/addon/edit/closebrackets.js"></script>
     <script src="http://codemirror.net/addon/edit/closetag.js"></script>
     <script src="http://codemirror.net/addon/display/autorefresh.js"></script>
 </head>
 <body>
-<%= form_for(@snippit) do |f| %>
+<%= form_for(@snippit, remote: true) do |f| %>
         <%= f.submit "Save", class: 'btn btn-primary submit' %>
         <%= link_to 'Preview', @snippit, :class => "btn btn-primary", :target => "_ " %>
         <ul class="nav nav-tabs">
@@ -35,12 +36,14 @@
 <script>
 $(document).ready(function() {
       var delay;
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
         mode: "text/html",
          tabMode: "indent",
                     lineNumbers: true,
                     lineWrapping: true,
                      theme: "monokai",
+                     autoCloseBrackets:true,
+                     autoCloseTags:true,
                      autoRefresh: true});
       editor.on("change", function() {
         clearTimeout(delay);
@@ -53,7 +56,9 @@ var editor = CodeMirror.fromTextArea(document.getElementById('css'), {
     tabMode: "indent",
                     lineNumbers: true,
                     lineWrapping: true,
+                    autoCloseTags:true,
     theme:"monokai",
+    autoCloseBrackets:true,
     mode: 'text/css',
     autoRefresh: true
 });
@@ -61,6 +66,8 @@ var editor = CodeMirror.fromTextArea(document.getElementById('js'), {
     tabMode: "indent",
                     lineNumbers: true,
                     lineWrapping: true,
+                    autoCloseBrackets:true,
+                    autoCloseTags:true,
     theme:"monokai",
     mode: 'text/javascript',
     autoRefresh: true

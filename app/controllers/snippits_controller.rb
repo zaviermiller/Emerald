@@ -55,9 +55,11 @@ class SnippitsController < ApplicationController
       if @snippit.update(snippit_params)
         format.html { redirect_to edit_snippit_path(@snippit) }
         format.json { render :show, status: :ok, location: @snippit }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @snippit.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end
