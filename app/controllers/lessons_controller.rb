@@ -34,7 +34,7 @@ class LessonsController < ApplicationController
     else
       redirect_to courses_path
     end
-      if @current_lesson.code.include?(@current_course.answer) & @current_lesson.css.include?(@current_course.cssanswer)
+      if @current_lesson.code.include?(@current_course.answer) && @current_lesson.css.include?(@current_course.cssanswer)
         @current_lesson.complete = 1
         flash[:notice] = "Lesson complete! "
         @current_lesson.save 
@@ -50,11 +50,9 @@ class LessonsController < ApplicationController
       if @lesson.save
         format.html { redirect_to edit_lesson_path(@lesson) }
         format.json { render :show, status: :created, location: @lesson }
-        format.js {}
       else
         format.html { render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
-        format.js {}
       end
     end
   end

@@ -126,24 +126,13 @@
 }
 </style>
 
-   <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
-<link rel="stylesheet" href="http://codemirror.net/theme/monokai.css">
-<script src="http://codemirror.net/lib/codemirror.js"></script>
-<script src="http://codemirror.net/mode/xml/xml.js"></script>
-<script src="http://codemirror.net/addon/edit/matchbrackets.js"></script>
-    <script src="http://codemirror.net/addon/edit/continuecomment.js"></script>
-<script src="http://codemirror.net/mode/javascript/javascript.js"></script>
-<script src="http://codemirror.net/mode/css/css.js"></script>
-    <script src="http://codemirror.net/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="http://codemirror.net/addon/edit/closetag.js"></script>
-    <script src="http://codemirror.net/addon/display/autorefresh.js"></script>
 </head>
 <body>
   <span class="jumbotron">
   <h2 style="text-align: center;"><%= @current_course.title %></h2>
   <p><%=  Course.find(@current_course).instructions.html_safe %></p>
   </span>
-<%= form_for [@course, @lesson], remote: true do |f| %>
+<%= form_for [@course, @lesson] do |f| %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :course_id, :value => @course.id %>
       <%= f.hidden_field :create, :value => 1 %>
