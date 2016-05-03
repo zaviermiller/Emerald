@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :lessons, shallow:true
 end
   resources :snippits
-  get 'code/langselect'
 
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
     get 'dashboard' => 'dashboard#index'

@@ -72,7 +72,7 @@ class SnippitsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to snippits_url}
       format.json { head :no_content }
-      format.js {}
+      format.js {render js: "alert('Sippit destroyed.');"}
     end
   end
 

@@ -23,7 +23,7 @@
     </div>
   <tbody>
     <% @courses.each do |course| %>
-      <tr>
+    <%= content_tag_for :tr, Course %>
 <% if Lesson.exists?(user: current_user, course: course, complete: true) %>
         <td>
         <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
@@ -97,7 +97,7 @@
               </div>
             </div>
           </td>
-      </tr>
+      <% end %>
   </tbody>
 </table>
 
