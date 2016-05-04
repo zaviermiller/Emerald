@@ -62,16 +62,25 @@
         position: absolute;
         top: 7%;
     }
-.panel-default {
+@media screen and (min-width: 520px) {
+  .panel-default {
   width: 500px;
   height: 100px;
   margin-left: -250px;
   position: relative;
   left: 50%;
-  margin-top: 20px;
   display: block;
   border-radius: 20px;
+  margin-top: 40px;
+  }
 }
+  .panel-default {
+  height: 100px;
+  position: relative;
+  display: block;
+  border-radius: 20px;
+  margin-top: 40px;
+  }
 .text {
   color:black;
   text-align: center;
