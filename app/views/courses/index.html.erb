@@ -21,83 +21,94 @@
     </li>
     </ul>
     </div>
-  <tbody>
-    <% @courses.each do |course| %>
-<% if Lesson.exists?(user: current_user, course: course, complete: true) %>
-        <td>
-        <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
-        <div class="panel panel-default" id="course_<%= course.id %>">
-      <div class="panel-body">
-      <p class="complete"><span class="fa-stack fa-lg">
-  <i class="fa fa-circle-thin fa-stack-2x"></i>
-  <i class="fa fa-check fa-stack-1x "></i>
-</span></p>
-      <h3 class="text"><%=course.title%></h3>
-      <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
-            <i class="fa fa-2x fa-trash-o"></i>
-            <% end %></p>
-            <p class="pencil"><%= link_to edit_course_path(course) do%>
-            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+    <tbody>
+      <% @courses.each do |course| %>
+        <% if Lesson.exists?(user: current_user, course: course, complete: true) %>
+          <td>
+            <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
+              <div class="panel panel-default" id="course_<%= course.id %>">
+                <div class="panel-body">
+                  <p class="complete">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle-thin fa-stack-2x"></i>
+                      <i class="fa fa-check fa-stack-1x "></i>
+                    </span>
+                  </p>
+                  <h3 class="text"><%=course.title%></h3>
+                  <% if current_user.master? %>
+                    <p class="trash">
+                      <%= link_to course, method: :delete, remote: true do %>
+                        <i class="fa fa-2x fa-trash-o"></i>
+                      <% end %>
+                    </p>
+                    <p class="pencil">
+                      <%= link_to edit_course_path(course) do%>
+                        <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+                    <% end %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-          </div>
-           <% end %>
-          </div>
-          <% end %>
           </td>
-      <% else %>
-      <% if Lesson.exists?(user: current_user, course: course) %>
-        <td>
-        <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
-        <div class="panel panel-default" id="course_<%= course.id %>">
-      <div class="panel-body">
-      <h3 class="text"><%=course.title%></h3>
-      <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
-            <i class="fa fa-2x fa-trash-o"></i>
-            <% end %></p>
-            <p class="pencil"><%= link_to edit_course_path(course) do%>
-            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+        <% elsif Lesson.exists?(user: current_user, course: course) %>
+          <td>
+            <%= link_to edit_lesson_path(Lesson.find_by(user: current_user, course: course)) do%>
+              <div class="panel panel-default" id="course_<%= course.id %>">
+                <div class="panel-body">
+                  <h3 class="text"><%=course.title%></h3>
+                  <% if current_user.master? %>
+                    <p class="trash">
+                      <%= link_to course, method: :delete, remote: true do %>
+                        <i class="fa fa-2x fa-trash-o"></i>
+                      <% end %>
+                    </p>
+                    <p class="pencil">
+                      <%= link_to edit_course_path(course) do%>
+                        <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-          </div>
-           <% end %>
-          </div>
-          <% end %>
           </td>
         <% else %>
-        <td>
-        <%= link_to new_course_lesson_path(course) do%>
-        <div class="panel panel-default" id="course_<%= course.id %>">
-      <div class="panel-body">
-      <h3 class="text"><%=course.title%></h3>
-      <% if current_user.master? %>
-          <p class="trash"><%= link_to course, method: :delete, remote: true do %>
-            <i class="fa fa-2x fa-trash-o"></i>
-            <% end %></p>
-            <p class="pencil"><%= link_to edit_course_path(course) do%>
-            <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+          <td>
+            <%= link_to new_course_lesson_path(course) do%>
+              <div class="panel panel-default" id="course_<%= course.id %>">
+                <div class="panel-body">
+                  <h3 class="text"><%=course.title%></h3>
+                  <% if current_user.master? %>
+                    <p class="trash">
+                      <%= link_to course, method: :delete, remote: true do %>
+                        <i class="fa fa-2x fa-trash-o"></i>
+                      <% end %>
+                    </p>
+                    <p class="pencil">
+                      <%= link_to edit_course_path(course) do%>
+                        <i class="fa fa-2x fa-pencil" id= "pencil"></i>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-          </div>
-           <% end %>
-          </div>
-          <% end %>
           </td>
-          <% end %>
-          <% end %>
-          <% end %>
-                  <td>
-          <% if current_user.master? %>
+        <% end %>
+      <% end %>
+      <td>
+        <% if current_user.master? %>
           <%= link_to new_course_path do %>
             <div class="panel panel-default new">
               <div class="panel-body">
-              <h3 class="text"><i class="fa fa-5x fa-plus"></i></h3>
-    <% end %>
+                <h3 class="text"><i class="fa fa-5x fa-plus"></i></h3>
               </div>
             </div>
-          </td>
-      <% end %>
-  </tbody>
-</table>
+          <% end %>
+        <% end %>
+      </td>
+    </tbody>
 
 <style type="text/css">
 .new {
@@ -212,7 +223,7 @@
     }
 .dropdownmenu {
     position: absolute;
-    top: 111%;
+    top: 56px;
     min-width: 160px;
     z-index: 1000;
     display: none;
@@ -258,7 +269,6 @@ body {
      background-size: cover;
      background-repeat:repeat-y;
      overflow-x:hidden;
-     overflow-y: auto;
     display: compact;
 }
 </style>
