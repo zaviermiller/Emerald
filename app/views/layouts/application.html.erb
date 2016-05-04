@@ -29,7 +29,8 @@
 <% end %>
 <style type="text/css">
 body {
-  overflow-x:hidden;
+  overflow-x:hidden !important;
+  position: fixed;
 }
 		#alert_wrapper {
 		width: 100%;
@@ -101,28 +102,6 @@ body {
     background: rgba(0,0,0,0,);
 }
 </style>
-<script type="text/javascript">
-  function setScrollLeft(x)
-{
-  if ( element.scrollLeft != x )
-  {
-    ignoreScrollEvents = true;
-    element.scrollLeft = x;
-  }
-} 
-
-...
-
-function onScroll() 
-{
-  var ignore = ignoreScrollEvents;
-  ignoreScrollEvents = false;
-
-  if (ignore) return false;
-
-  ...
-}
-</script>
 
 <%= yield %>
 </body>
